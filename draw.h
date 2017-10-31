@@ -1,10 +1,17 @@
 #pragma once
-#include <iostream>
+#include "stdafx.h"
 class draw
 {
 	int x, y, z;
+	
 public:
-
+	
+	draw() 
+	{
+		this->x = NULL;
+		this->y = NULL;
+		this->z = NULL;
+	}
 	draw(int x, int y)
 	{
 		this->x = x;
@@ -12,8 +19,11 @@ public:
 		this->z = NULL;
 	};
 
-	draw(int x) {
+	draw(int x) 
+	{
 		this->x = x;
+		this->y = NULL;
+		this->z = NULL;
 	};
 	draw(int x, int y, int z) 
 	{
@@ -21,7 +31,7 @@ public:
 		this->y = y;
 		this->z = z;
 	}
-	draw skriv() {
+	draw skriv() { //Skriver ut koordinatene dersom de ikke er 0. 
 		if (x != NULL) std::cout << " x: " << x;
 		if (y != NULL) std::cout << " y: " << y;
 		if (z != NULL) std::cout << " z: " << z;
@@ -29,7 +39,7 @@ public:
 		std::cout << std::endl;
 		return 0;
 	}
-	draw(draw a, draw b) {
+	draw(draw a, draw b) { //Setter avstanden mellom punktenes koordinater som en linje.
 		this->x = b.x - a.x;
 		this->y = b.y - a.y;
 

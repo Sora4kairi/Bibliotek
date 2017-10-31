@@ -9,7 +9,9 @@
 
 #include <stdio.h>
 #include <tchar.h>
-
+#include <iostream>
+#include "draw.h"
+#include "Polygon.h"
 
 
 // TODO: reference additional headers your program requires here
