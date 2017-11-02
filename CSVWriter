@@ -1,50 +1,44 @@
 #include "stdafx.h"
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <set>
 #include <iterator>
 #include <string>
 #include <algorithm>
+#include "Windows.h"
+
 
 class CSVWriter
 {
-	std::string fileName;
+	std::string filnavn;
 	std::string delimeter;
-	int linesCount;
+	int linje;
 
 public:
-	CSVWriter(std::string filename, std::string delm = ",") :
-		fileName(filename), delimeter(delm), linesCount(0)
+	CSVWriter(std::string filnavn, std::string deler = ",") : //Bytte deler dersom vi vil splitte med noe annet. 
+		filnavn(filnavn), delimeter(deler), linje(0)
 	{}
-	/*
-	* Member function to store a range as comma seperated value
-	*/
+
 	template<typename T>
 	void addDatainRow(T first, T last);
 };
 
-/*
-* This Function accepts a range and appends all the elements in the range
-* to the last row, seperated by delimeter (Default is comma)
-*/
 template<typename T>
 void CSVWriter::addDatainRow(T first, T last)
 {
-	std::fstream file;
-	// Open the file in truncate mode if first line else in Append Mode
-	file.open(fileName, std::ios::out | (linesCount ? std::ios::app : std::ios::trunc));
+	std::fstream fil;
 
-	// Iterate over the range and add each lement to file seperated by delimeter.
+	fil.open(filnavn, std::ios::out | (linje ? std::ios::app : std::ios::trunc));
+
 	for (; first != last; )
 	{
-		file << *first;
+		fil << *first;
 		if (++first != last)
-			file << delimeter;
+			fil << delimeter;
 	}
-	file << "\n";
-	linesCount++;
+	fil << "\n";
+	linje++;
 
-	// Close the file
-	file.close();
-};
-
+	fil.close();
+}
