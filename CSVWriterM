@@ -1,36 +1,23 @@
-// CSVTest.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include "CSVWriter.h"
-
 int main()
 {
-	// Creating an object of CSVWriter
-	CSVWriter writer("example.csv");
+	CSVWriter writer("Data.csv");
+	bool end = false;
+	int counter = 0;
+	int x = 0, y = 0;
 
-	std::vector<std::string> dataList_1 = { "20", "hi", "99" };
+	std::set<int> dataList_2 = { x, y };
 
-	// Adding vector to CSV File
-	writer.addDatainRow(dataList_1.begin(), dataList_1.end());
+	while (end == false) {
+		x = x + 1;
+		y = y + 1;
+		dataList_2 = { x, y };
 
-	// Create a set of integers
-	std::set<int> dataList_2 = { 3, 4, 5 };
-
-	// Adding Set to CSV File
-	writer.addDatainRow(dataList_2.begin(), dataList_2.end());
-
-	std::string str = "abc";
-
-	// Adding characters in a string in csv file.
-	writer.addDatainRow(str.begin(), str.end());
-
-	// An array of int
-	int arr[] = { 3,4,1 };
-
-	// Wrote an elements in array to csv file.
-	writer.addDatainRow(arr, arr + sizeof(arr) / sizeof(int));
-
+		writer.addDatainRow(dataList_2.begin(), dataList_2.end());
+		counter++;
+		if (counter == 10) { end = true; };
+		Sleep(1000);
+	}
 	return 0;
 }
-
